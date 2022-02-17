@@ -43,6 +43,9 @@
                 exa 
                 bat
                 fzf
+                ripgrep
+                tig
+                git
               ];
 
               programs.fish = {
