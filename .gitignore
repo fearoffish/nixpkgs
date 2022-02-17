@@ -1,0 +1,9 @@
+result
+.DS_STORE
+.direnv/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+venv/
+env/
+__pycache__/
