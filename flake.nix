@@ -17,19 +17,18 @@
     let
       inherit (inputs.nixpkgs-unstable.lib) attrValues makeOverridable optionalAttrs singleton;
 
-      # Configuration for `nixpkgs`
-          nixpkgsConfig = {
-            config = { allowUnfree = true; };
-            overlays = attrValues self.overlays ++ singleton (
-              # Sub in x86 version of packages that don't build on Apple Silicon yet
-              final: prev: (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
-                inherit (final.pkgs-x86)
-                  cachix # Nix build cache
-                  packer # HashiCorp tool for building machine images
-                  ;
-              })
-            );
-          };
+      nixpkgsConfig = {
+        config = { allowUnfree = true; };
+        overlays = attrValues self.overlays ++ singleton (
+          # Sub in x86 version of packages that don't build on Apple Silicon yet
+          final: prev: (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
+            inherit (final.pkgs-x86)
+              cachix # Nix build cache
+              packer # HashiCorp tool for building machine images
+              ;
+          })
+        );
+      };
 
       imports = [
           ./modules
@@ -54,51 +53,51 @@
 
               home.packages = with pkgs; [ 
                 asdf-vm # version manager for all the things
-                # autoconf # Broadly used tool, no clue what it does
-                # awscli # Amazon Web Services CLI
-                # bash # /bin/bash
+                autoconf # Broadly used tool, no clue what it does
+                awscli # Amazon Web Services CLI
+                bash # /bin/bash
                 bat # cat replacement written in Rust
                 bottom # istat menus on the cli
                 buildpack # Cloud Native buildpacks
                 curl # An old classic
                 direnv # Per-directory environment variables
                 exa # ls replacement written in Rust
-                # fd # find replacement written in Rust
+                fd # find replacement written in Rust
                 fzf # Fuzzy finder
                 gh # github cli
                 git # git maybe?
-                # gnupg # gpg
-                # google-cloud-sdk # Google Cloud Platform CLI
-                # graphviz # dot
-                # htop # Resource monitoring
-                # httpie # Like curl but more user friendlyq
+                gnupg # gpg
+                google-cloud-sdk # Google Cloud Platform CLI
+                graphviz # dot
+                htop # Resource monitoring
+                httpie # Like curl but more user friendlyq
                 jq # JSON parsing for the CLI
-                # k9s # k8s tui
-                # kubectl # Kubernetes CLI tool
-                # kubectx # kubectl context switching
-                # kubernetes-helm # Kubernetes package manager
-                # kustomize
-                # lorri # Easy Nix shell
-                # lua5 # My second-favorite language from Brazil
+                k9s # k8s tui
+                kubectl # Kubernetes CLI tool
+                kubectx # kubectl context switching
+                kubernetes-helm # Kubernetes package manager
+                kustomize
+                lorri # Easy Nix shell
+                lua5 # My second-favorite language from Brazil
                 m-cli # handy macos cli for managing macos stuff
-                # mdcat # Markdown converter/reader for the CLI
-                # neovim # faster vim with sane defaults
-                # niv # Nix dependency management
-                # pinentry_mac # Necessary for GPG
-                # podman # Docker alternative
-                # qemu # emulator
+                mdcat # Markdown converter/reader for the CLI
+                neovim # faster vim with sane defaults
+                niv # Nix dependency management
+                pinentry_mac # Necessary for GPG
+                podman # Docker alternative
+                qemu # emulator
                 ripgrep # grep replacement written in Rust
-                # sd # Fancy sed replacement
-                # skim # High-powered fuzzy finder written in Rust
+                sd # Fancy sed replacement
+                skim # High-powered fuzzy finder written in Rust
                 starship # Fancy shell that works with zsh
-                # tealdeer # tldr for various shell tools
-                # terraform # Declarative infrastructure management
-                # tig # git tui
-                # tmux # cli window manager
-                # tokei # Handy tool to see lines of code by language
+                tealdeer # tldr for various shell tools
+                terraform # Declarative infrastructure management
+                tig # git tui
+                tmux # cli window manager
+                tokei # Handy tool to see lines of code by language
                 tree # Should be included in macOS but it's not
                 wget
-                # youtube-dl # Download videos
+                youtube-dl # Download videos
                 zoxide # directory switcher with memory
               ];
 
