@@ -185,7 +185,12 @@
                 };
               };
 
-              programs.gpg.enable = true;
+              programs.gpg = {
+                enable = true;
+                settings = {
+                  use-agent = true;
+                };
+              };
 
               programs.bat = {
                   enable = true;
