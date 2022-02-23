@@ -1,11 +1,12 @@
 {
-  description = "Minimal mkDarwinSystem example";
+  description = "Jamie's Laptop";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-21.11-darwin";
     nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
     
-    mk-darwin-system.url = "github:fearoffish/mk-darwin-system/main";
+    # mk-darwin-system.url = "github:fearoffish/mk-darwin-system/main";
+    mk-darwin-system.url = "path:/Users/jamievandyke/a/git/fearoffish/mk-darwin-system";
     mk-darwin-system.inputs.nixpkgs.follows = "nixpkgs";
 
     # nix formatter
@@ -30,6 +31,7 @@
         );
       };
 
+      # TODO: Sort this
       imports = [
           ./modules
         ];
@@ -49,7 +51,10 @@
           }
 
           ({ config, pkgs, lib, ... }: {
+
             home-manager.users."jamievandyke" = {
+              home.username = "jamievandyke";
+              # home.homeDirectory = "/Users/jamievandyke";
               # home.sessionPath = [];
               # home.sessionVariables = [];
 
@@ -65,6 +70,7 @@
                 bash # /bin/bash
                 bottom # istat menus on the cli
                 buildpack # Cloud Native buildpacks
+                bundix
                 curl # An old classic
                 direnv # Per-directory environment variables
                 exa # ls replacement written in Rust
@@ -90,11 +96,11 @@
                 niv # Nix dependency management
                 pinentry_mac # Necessary for GPG
                 podman # Docker alternative
+                postgresql
                 qemu # emulator
                 ripgrep # grep replacement written in Rust
                 sd # Fancy sed replacement
                 skim # High-powered fuzzy finder written in Rust
-                starship # Fancy shell that works with zsh
                 tealdeer # tldr for various shell tools
                 terraform # Declarative infrastructure management
                 tig # git tui
@@ -146,6 +152,12 @@
                   };
                 };
               };
+
+              programs.starship = {
+                enable = true;
+                enableFishIntegration = true;
+                enableZshIntegration = true;
+              };
               
               programs.direnv.enable = true;
 
@@ -182,6 +194,34 @@
                   init = {
                     defaultBranch = "main";
                   };
+                  merge = {
+                    log = true;
+                    tool = "Kaleidoscope";
+                  };
+                  "difftool \"Kaleidoscope\"" = {
+                    cmd = "ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"";
+                    prompt = false;
+                  };
+                  "mergetool \"Kaleidoscope\"" = {
+                    cmd = "ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot";
+                    trustExitCode = true;
+                  };
+                };
+                aliases = {
+                  # View abbreviated SHA, description, and history graph of the latest 20 commits
+                  l = "log --pretty=oneline -n 20 --graph --abbrev-commit";
+
+                  # View the current working tree status using the short format
+                  s = "status -s";
+
+                  # Show the diff between the latest commit and the current state
+                  d = "!\"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat\"";
+
+                  # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+                  di = "!\"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d\"";
+
+                  # Color graph log view
+                  graph = "log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\"";
                 };
               };
 
@@ -190,6 +230,7 @@
                 settings = {
                   use-agent = true;
                 };
+                # publicKeys = [ { source = ./pubkeys.txt; } ];
               };
 
               programs.bat = {
@@ -202,6 +243,13 @@
 
               # create some custom dot-files on your user's home.
               # home.file.".config/foo".text = "bar";
+
+              # Link apps installed by home-manager.
+              home.activation = {
+                aliasApplications = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+                  ln -sfn $genProfilePath/home-path/Applications "$HOME/Applications/HomeManagerApps"
+                '';
+              };
             };
           })
 
