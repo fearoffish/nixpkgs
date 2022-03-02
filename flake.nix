@@ -66,7 +66,7 @@
                 # general tools
                 asdf-vm # version manager for all the things
                 autoconf # Broadly used tool, no clue what it does
-                awscli # Amazon Web Services CLI
+                awscli2 # Amazon Web Services CLI
                 bash # /bin/bash
                 bottom # istat menus on the cli
                 buildpack # Cloud Native buildpacks
@@ -88,7 +88,6 @@
                 kubectx # kubectl context switching
                 kubernetes-helm # Kubernetes package manager
                 kustomize
-                lorri # Easy Nix shell
                 lua5 # My second-favorite language from Brazil
                 m-cli # handy macos cli for managing macos stuff
                 mdcat # Markdown converter/reader for the CLI
@@ -96,13 +95,11 @@
                 niv # Nix dependency management
                 pinentry_mac # Necessary for GPG
                 podman # Docker alternative
-                postgresql
                 qemu # emulator
                 ripgrep # grep replacement written in Rust
                 sd # Fancy sed replacement
                 skim # High-powered fuzzy finder written in Rust
                 tealdeer # tldr for various shell tools
-                terraform # Declarative infrastructure management
                 tig # git tui
                 tmux # cli window manager
                 tokei # Handy tool to see lines of code by language
@@ -126,12 +123,31 @@
                       sha256 = "1hrl22dd0aaszdanhvddvqz3aq40jp9zi2zn0v1hjnf7fx4bgpma";
                     };
                   }
+                  {
+                    name = "aws";
+                    src = pkgs.fetchFromGitHub {
+                      owner = "oh-my-fish";
+                      repo = "plugin-aws";
+                      rev = "a4cfb06627b20c9ffdc65620eb29abcedcc16340";
+                      sha256 = "bTyp5j4VcFSntJ7mJBzERgOGGgu7ub15hy/FQcffgRE=";
+                    };
+                  }
+                  {
+                    name = "foreign-env";
+                    src = pkgs.fetchFromGitHub {
+                      owner = "oh-my-fish";
+                      repo = "plugin-foreign-env";
+                      rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
+                      sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
+                    };
+                  }
                 ];
                 shellInit = ''
                   # Set syntax highlighting colours; var names defined here:
                   # http://fishshell.com/docs/current/index.html#variables-color
                   set fish_color_autosuggestion brblack
                   set -e GNUPGHOME
+                  set -xg EDITOR /opt/homebrew/bin/subl
                 '';
                 shellAliases = {
                   rm = "rm -i";
@@ -141,11 +157,24 @@
                 };
                 shellAbbrs = {
                   o = "open";
+                  s = "subl .";
+                  n = "nix run";
                 };
                 functions = {
                   fish_greeting = {
                     description = "Greeting to show when starting a fish shell";
                     body = "";
+                  };
+                  flakify = {
+                    description = "Add a flake.nix for devshell";
+                    body = ''if [ ! -e flake.nix ]
+                      nix flake new -t github:nix-community/nix-direnv .
+                    else if [ ! -e .envrc ]
+                      echo "use flake" > .envrc
+                    end
+                    $EDITOR flake.nix
+                    direnv allow
+                    '';
                   };
                   mkdcd = {
                     description = "Make a directory tree and enter it";
@@ -181,7 +210,7 @@
                 ignores = [ ".DS_Store" "*.swp" ];
                 extraConfig = {
                   core = {
-                    editor = "subl -w";
+                    editor = "/opt/homebrew/bin/subl -w";
                   };
                   color = {
                     ui = true;
