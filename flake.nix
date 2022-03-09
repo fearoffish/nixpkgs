@@ -88,6 +88,7 @@
                 kubectx # kubectl context switching
                 kubernetes-helm # Kubernetes package manager
                 kustomize
+                libnotify # for those sweet sweet notifications
                 lua5 # My second-favorite language from Brazil
                 m-cli # handy macos cli for managing macos stuff
                 mdcat # Markdown converter/reader for the CLI
@@ -159,6 +160,8 @@
                   o = "open";
                   s = "subl .";
                   n = "nix run";
+                  bi = "bundle install";
+                  be = "bundle exec";
                 };
                 functions = {
                   fish_greeting = {
