@@ -1,2 +1,5 @@
 # minimal example
 
+```
+nix run
+```
