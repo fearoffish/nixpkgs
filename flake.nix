@@ -5,8 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-21.11-darwin";
     nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
     
-    # mk-darwin-system.url = "github:fearoffish/mk-darwin-system/main";
-    mk-darwin-system.url = "path:/Users/jamievandyke/a/git/fearoffish/mk-darwin-system";
+    mk-darwin-system.url = "github:fearoffish/mk-darwin-system/main";
+    # mk-darwin-system.url = "path:/Users/jamievandyke/a/git/fearoffish/mk-darwin-system";
     mk-darwin-system.inputs.nixpkgs.follows = "nixpkgs";
 
     # nix formatter
@@ -50,11 +50,14 @@
             };
           }
 
-          ({ config, pkgs, lib, ... }: {
 
-            home-manager.users."jamievandyke" = {
-              home.username = "jamievandyke";
-              # home.homeDirectory = "/Users/jamievandyke";
+
+          ({ config, pkgs, lib, ... }: {
+            # imports = [ ./git ./direnv ./ssh ./fish ./emacs ];
+            users.users."C5343288".home = "/Users/C5343288";
+
+            home-manager.users."C5343288" = {
+              # home.username = "C5343288";
               # home.sessionPath = [];
               # home.sessionVariables = [];
 
@@ -88,11 +91,13 @@
                 kubectx # kubectl context switching
                 kubernetes-helm # Kubernetes package manager
                 kustomize
+                lazygit # nice tui for git
                 libnotify # for those sweet sweet notifications
                 lua5 # My second-favorite language from Brazil
                 m-cli # handy macos cli for managing macos stuff
                 mdcat # Markdown converter/reader for the CLI
                 neovim # faster vim with sane defaults
+                ncdu # a great large file and folder finder with a tui to help cleanup stuffs
                 niv # Nix dependency management
                 pinentry_mac # Necessary for GPG
                 podman # Docker alternative
@@ -149,6 +154,7 @@
                   set fish_color_autosuggestion brblack
                   set -e GNUPGHOME
                   set -xg EDITOR /opt/homebrew/bin/subl
+                  set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
                 '';
                 shellAliases = {
                   rm = "rm -i";
@@ -162,6 +168,7 @@
                   n = "nix run";
                   bi = "bundle install";
                   be = "bundle exec";
+                  ib = "iacbox -iv=iacbox.common.cdn.repositories.cloud.sap/iacbox-dev-arm:latest";
                 };
                 functions = {
                   fish_greeting = {
@@ -191,8 +198,18 @@
                 enableFishIntegration = true;
                 enableZshIntegration = true;
               };
+
+              programs.fzf = {
+                enable = true;
+                enableFishIntegration = true;
+                enableZshIntegration = true;
+              };
               
-              programs.direnv.enable = true;
+              programs.direnv = {
+                enable = true;
+                # enableFishIntegration = true; # This is automatic so unnecessary
+                enableZshIntegration = true;
+              };
 
               programs.git = {
                 enable = true;
@@ -258,14 +275,6 @@
                 };
               };
 
-              programs.gpg = {
-                enable = true;
-                settings = {
-                  use-agent = true;
-                };
-                # publicKeys = [ { source = ./pubkeys.txt; } ];
-              };
-
               programs.bat = {
                   enable = true;
                   config = {
@@ -273,6 +282,14 @@
                     italic-text = "always";
                   };
                 };
+
+              programs.gpg = {
+                enable = true;
+                settings = {
+                  use-agent = true;
+                };
+                publicKeys = [ { source = ./pubkeys.txt; } ];
+              };
 
               # create some custom dot-files on your user's home.
               # home.file.".config/foo".text = "bar";
@@ -306,5 +323,8 @@
 
         ];
       };
-    in darwinFlakeOutput // { darwinConfigurations."jamie-mbp" = darwinFlakeOutput.darwinConfiguration.aarch64-darwin; };
+    in darwinFlakeOutput // { 
+      darwinConfigurations."jamie-mbp" = darwinFlakeOutput.darwinConfiguration.aarch64-darwin;
+      darwinConfigurations."K9XQJHW7QC" = darwinFlakeOutput.darwinConfiguration.aarch64-darwin;
+    };
 }
