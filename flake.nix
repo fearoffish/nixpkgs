@@ -73,7 +73,8 @@
                 bash # /bin/bash
                 bottom # istat menus on the cli
                 buildpack # Cloud Native buildpacks
-                bundix
+                bundix # for bundling gems into nix
+                cheat # a cheat sheet lookup tool
                 curl # An old classic
                 direnv # Per-directory environment variables
                 exa # ls replacement written in Rust
@@ -154,7 +155,8 @@
                   set fish_color_autosuggestion brblack
                   set -e GNUPGHOME
                   set -xg EDITOR /opt/homebrew/bin/subl
-                  set -U fish_user_paths /opt/homebrew/bin $fish_user_paths
+
+                  fish_add_path --prepend --global ~/.asdf/shims /opt/homebrew/bin
                 '';
                 shellAliases = {
                   rm = "rm -i";
@@ -211,6 +213,9 @@
                 enableZshIntegration = true;
               };
 
+              # keybase pgp export -q keyID --secret | gpg --import --allow-secret-key-import
+              # keybase pgp export -q 01018741863ed1ecf321a823506abf7dbc840f34b0055321d674d5de59b23b36d78c0a --secret | gpg --import --allow-secret-key-import
+              # echo "test" | gpg --clearsign
               programs.git = {
                 enable = true;
                 userEmail = "me@fearof.fish";
@@ -229,6 +234,14 @@
                 };
                 ignores = [ ".DS_Store" "*.swp" ];
                 extraConfig = {
+                  "[includeIf \"gitdir:~/SAPDevelop/\"]" = {
+                    userEmail = "jamie.van.dyke@sap.com";
+                    userName = "Jamie van Dyke";
+                    signing = {
+                      key = "9E38EBA7545107BA01517C7847FCD8BACC05E151";
+                      signByDefault = true;
+                    };
+                  };
                   core = {
                     editor = "/opt/homebrew/bin/subl -w";
                   };
@@ -272,6 +285,9 @@
 
                   # Color graph log view
                   graph = "log --graph --color --pretty=format:\"%C(yellow)%H%C(green)%d%C(reset)%n%x20%cd%n%x20%cn%x20(%ce)%n%x20%s%n\"";
+
+                  # submodules update and init recursive
+                  suri = "submodule update --init --recursive";
                 };
               };
 
@@ -289,6 +305,17 @@
                   use-agent = true;
                 };
                 publicKeys = [ { source = ./pubkeys.txt; } ];
+              };
+
+              xdg = {
+                enable = true;
+
+                # configFile."gnupg/gpg-agent.conf".text = ''
+                #   enable-ssh-support
+                #   default-cache-ttl 86400
+                #   max-cache-ttl 86400
+                #   pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
+                # '';
               };
 
               # create some custom dot-files on your user's home.
