@@ -3,8 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-21.11-darwin";
-    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
-    
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
     mk-darwin-system.url = "github:fearoffish/mk-darwin-system/main";
     # mk-darwin-system.url = "path:/Users/jamievandyke/a/git/fearoffish/mk-darwin-system";
     mk-darwin-system.inputs.nixpkgs.follows = "nixpkgs";
@@ -33,8 +33,8 @@
 
       # TODO: Sort this
       imports = [
-          ./modules
-        ];
+        ./modules
+      ];
 
       darwinFlakeOutput = mk-darwin-system.mkDarwinSystem.m1 {
 
@@ -46,11 +46,9 @@
           {
             home-manager = {
               # sharedModules = []; # per-user modules.
-              # extraSpecialArgs = {}; # pass aditional arguments to all modules.
+              # extraSpecialArgs = {}; # pass additional arguments to all modules.
             };
           }
-
-
 
           ({ config, pkgs, lib, ... }: {
             # imports = [ ./git ./direnv ./ssh ./fish ./emacs ];
@@ -64,6 +62,7 @@
               home.packages = with pkgs; [
                 # work tool
                 bosh-cli # cli for cloudfoundry bosh
+                credhub-cli
                 safe # a vault cli
 
                 # general tools
@@ -82,6 +81,7 @@
                 fzf # Fuzzy finder
                 gh # github cli
                 git # git maybe?
+                git-extras # useful git extra stuff
                 google-cloud-sdk # Google Cloud Platform CLI
                 graphviz # dot
                 htop # Resource monitoring
@@ -97,7 +97,6 @@
                 lua5 # My second-favorite language from Brazil
                 m-cli # handy macos cli for managing macos stuff
                 mdcat # Markdown converter/reader for the CLI
-                neovim # faster vim with sane defaults
                 ncdu # a great large file and folder finder with a tui to help cleanup stuffs
                 niv # Nix dependency management
                 pinentry_mac # Necessary for GPG
@@ -113,6 +112,7 @@
                 tree # Should be included in macOS but it's not
                 wget
                 youtube-dl # Download videos
+                yq # yaml processor like jq
                 zoxide # directory switcher with memory
               ];
 
@@ -156,7 +156,9 @@
                   set -e GNUPGHOME
                   set -xg EDITOR /opt/homebrew/bin/subl
 
-                  fish_add_path --prepend --global ~/.asdf/shims /opt/homebrew/bin
+                  fish_add_path --prepend --global ~/.asdf/shims /opt/homebrew/bin ~/.local/bin
+                  # Enable AWS CLI autocompletion: github.com/aws/aws-cli/issues/1079
+                  test -x (which aws_completer); and complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
                 '';
                 shellAliases = {
                   rm = "rm -i";
@@ -206,7 +208,7 @@
                 enableFishIntegration = true;
                 enableZshIntegration = true;
               };
-              
+
               programs.direnv = {
                 enable = true;
                 # enableFishIntegration = true; # This is automatic so unnecessary
@@ -233,15 +235,13 @@
                   };
                 };
                 ignores = [ ".DS_Store" "*.swp" ];
+                includes = [
+                  {
+                    path = "~/git.inc";
+                    condition = "gitdir:~/SAPDevelop/";
+                  }
+                ];
                 extraConfig = {
-                  "[includeIf \"gitdir:~/SAPDevelop/\"]" = {
-                    userEmail = "jamie.van.dyke@sap.com";
-                    userName = "Jamie van Dyke";
-                    signing = {
-                      key = "9E38EBA7545107BA01517C7847FCD8BACC05E151";
-                      signByDefault = true;
-                    };
-                  };
                   core = {
                     editor = "/opt/homebrew/bin/subl -w";
                   };
@@ -253,6 +253,7 @@
                   };
                   pull = {
                     ff = "only";
+                    rebase = "true";
                   };
                   init = {
                     defaultBranch = "main";
@@ -288,6 +289,14 @@
 
                   # submodules update and init recursive
                   suri = "submodule update --init --recursive";
+                  # submodules update with merge
+                  supdate = "submodule update --remote --merge";
+
+                  # diff with submodules
+                  sdiff = "'!'\"git diff && git submodule foreach 'git diff'\"";
+
+                  # push with submodules
+                  spush = "push --recurse-submodules=on-demand";
                 };
               };
 
@@ -350,7 +359,7 @@
 
         ];
       };
-    in darwinFlakeOutput // { 
+    in darwinFlakeOutput // {
       darwinConfigurations."jamie-mbp" = darwinFlakeOutput.darwinConfiguration.aarch64-darwin;
       darwinConfigurations."K9XQJHW7QC" = darwinFlakeOutput.darwinConfiguration.aarch64-darwin;
     };
