@@ -169,6 +169,7 @@
                 shellAbbrs = {
                   o = "open";
                   s = "subl .";
+                  l = "lvim";
                   n = "nix run";
                   bi = "bundle install";
                   be = "bundle exec";
