@@ -73,10 +73,12 @@
                 bottom # istat menus on the cli
                 buildpack # Cloud Native buildpacks
                 bundix # for bundling gems into nix
+                cargo # rust language
                 cheat # a cheat sheet lookup tool
                 curl # An old classic
                 direnv # Per-directory environment variables
                 exa # ls replacement written in Rust
+                expect # automatic shell responses
                 fd # find replacement written in Rust
                 fzf # Fuzzy finder
                 gh # github cli
@@ -103,6 +105,8 @@
                 podman # Docker alternative
                 qemu # emulator
                 ripgrep # grep replacement written in Rust
+                rustc # rust language
+                rustfmt # rust language
                 sd # Fancy sed replacement
                 skim # High-powered fuzzy finder written in Rust
                 tealdeer # tldr for various shell tools
@@ -113,8 +117,21 @@
                 wget
                 youtube-dl # Download videos
                 yq # yaml processor like jq
-                zoxide # directory switcher with memory
               ];
+
+              programs.bat = {
+                enable = true;
+                config = {
+                  theme = "GitHub";
+                  italic-text = "always";
+                };
+              };
+
+              programs.direnv = {
+                enable = true;
+                # enableFishIntegration = true; # This is automatic so unnecessary
+                enableZshIntegration = true;
+              };
 
               programs.fish = {
                 enable = true;
@@ -156,7 +173,7 @@
                   set -e GNUPGHOME
                   set -xg EDITOR /opt/homebrew/bin/subl
 
-                  fish_add_path --prepend --global ~/.asdf/shims /opt/homebrew/bin ~/.local/bin
+                  fish_add_path --prepend --global ~/.asdf/shims /opt/homebrew/bin ~/.local/bin ~/.cargo/bin
                   # Enable AWS CLI autocompletion: github.com/aws/aws-cli/issues/1079
                   test -x (which aws_completer); and complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
                 '';
@@ -174,6 +191,7 @@
                   bi = "bundle install";
                   be = "bundle exec";
                   ib = "iacbox -iv=iacbox.common.cdn.repositories.cloud.sap/iacbox-dev-arm:latest";
+                  sap = "cd ~/SAPDevelop";
                 };
                 functions = {
                   fish_greeting = {
@@ -191,6 +209,19 @@
                     direnv allow
                     '';
                   };
+                  neo = {
+                    description = "Open Neovide with given file/dir";
+                    body = ''set -xg LUNARVIM_CONFIG_DIR $HOME/.config/lvim
+                    set -xg LUNARVIM_RUNTIME_DIR $HOME/.local/share/lunarvim
+                    set -xg LUNARVIM_CACHE_DIR $HOME/.cache/lvim
+
+                    set ARG $argv[1]
+                    set CUR (pwd)
+                    set FILE "$CUR/$ARG"
+
+                    neovide -- -u "$LUNARVIM_RUNTIME_DIR/lvim/init.lua" $FILE
+                    '';
+                  };
                   mkdcd = {
                     description = "Make a directory tree and enter it";
                     body = "mkdir -p $argv[1]; and cd $argv[1]";
@@ -198,21 +229,9 @@
                 };
               };
 
-              programs.starship = {
-                enable = true;
-                enableFishIntegration = true;
-                enableZshIntegration = true;
-              };
-
               programs.fzf = {
                 enable = true;
                 enableFishIntegration = true;
-                enableZshIntegration = true;
-              };
-
-              programs.direnv = {
-                enable = true;
-                # enableFishIntegration = true; # This is automatic so unnecessary
                 enableZshIntegration = true;
               };
 
@@ -301,13 +320,6 @@
                 };
               };
 
-              programs.bat = {
-                  enable = true;
-                  config = {
-                    theme = "GitHub";
-                    italic-text = "always";
-                  };
-                };
 
               programs.gpg = {
                 enable = true;
@@ -315,6 +327,17 @@
                   use-agent = true;
                 };
                 publicKeys = [ { source = ./pubkeys.txt; } ];
+              };
+
+              programs.starship = {
+                enable = true;
+                enableFishIntegration = true;
+                enableZshIntegration = true;
+              };
+
+              programs.zoxide = {
+                enable = true;
+                enableFishIntegration = true;
               };
 
               xdg = {
