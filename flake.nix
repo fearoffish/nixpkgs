@@ -24,8 +24,8 @@
           # Sub in x86 version of packages that don't build on Apple Silicon yet
           final: prev: (optionalAttrs (prev.stdenv.system == "aarch64-darwin") {
             inherit (final.pkgs-x86)
-              cachix # Nix build cache
-              packer # HashiCorp tool for building machine images
+              cachix# Nix build cache
+              packer# HashiCorp tool for building machine images
               ;
           })
         );
@@ -104,7 +104,9 @@
                 pinentry_mac # Necessary for GPG
                 podman # Docker alternative
                 qemu # emulator
+                re2c # regex compiler
                 ripgrep # grep replacement written in Rust
+                rnix-lsp # nix language server
                 rustc # rust language
                 rustfmt # rust language
                 sd # Fancy sed replacement
@@ -326,7 +328,7 @@
                 settings = {
                   use-agent = true;
                 };
-                publicKeys = [ { source = ./pubkeys.txt; } ];
+                publicKeys = [{ source = ./pubkeys.txt; }];
               };
 
               programs.starship = {
@@ -383,7 +385,8 @@
 
         ];
       };
-    in darwinFlakeOutput // {
+    in
+    darwinFlakeOutput // {
       darwinConfigurations."jamie-mbp" = darwinFlakeOutput.darwinConfiguration.aarch64-darwin;
       darwinConfigurations."K9XQJHW7QC" = darwinFlakeOutput.darwinConfiguration.aarch64-darwin;
     };
