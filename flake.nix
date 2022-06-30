@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-21.11-darwin";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     mk-darwin-system.url = "github:fearoffish/mk-darwin-system/main";
@@ -66,7 +67,7 @@
                 safe # a vault cli
 
                 # general tools
-                asdf-vm # version manager for all the things
+                # asdf-vm # version manager for all the things
                 autoconf # Broadly used tool, no clue what it does
                 awscli2 # Amazon Web Services CLI
                 bash # /bin/bash
@@ -77,6 +78,7 @@
                 cheat # a cheat sheet lookup tool
                 curl # An old classic
                 direnv # Per-directory environment variables
+                dstp # run common networking tests against your site
                 exa # ls replacement written in Rust
                 expect # automatic shell responses
                 fd # find replacement written in Rust
@@ -84,6 +86,7 @@
                 gh # github cli
                 git # git maybe?
                 git-extras # useful git extra stuff
+                git-branchless # git undo and more
                 google-cloud-sdk # Google Cloud Platform CLI
                 graphviz # dot
                 htop # Resource monitoring
@@ -112,12 +115,9 @@
                 sd # Fancy sed replacement
                 skim # High-powered fuzzy finder written in Rust
                 tealdeer # tldr for various shell tools
-                tig # git tui
                 tmux # cli window manager
-                tokei # Handy tool to see lines of code by language
-                tree # Should be included in macOS but it's not
+                viddy # a modern watch
                 wget
-                youtube-dl # Download videos
                 yq # yaml processor like jq
               ];
 
@@ -150,15 +150,6 @@
                     };
                   }
                   {
-                    name = "aws";
-                    src = pkgs.fetchFromGitHub {
-                      owner = "oh-my-fish";
-                      repo = "plugin-aws";
-                      rev = "a4cfb06627b20c9ffdc65620eb29abcedcc16340";
-                      sha256 = "bTyp5j4VcFSntJ7mJBzERgOGGgu7ub15hy/FQcffgRE=";
-                    };
-                  }
-                  {
                     name = "foreign-env";
                     src = pkgs.fetchFromGitHub {
                       owner = "oh-my-fish";
@@ -173,17 +164,20 @@
                   # http://fishshell.com/docs/current/index.html#variables-color
                   set fish_color_autosuggestion brblack
                   set -e GNUPGHOME
-                  set -xg EDITOR /opt/homebrew/bin/subl
+                  set -xg EDITOR /Users/C5343288/.local/bin/lvim
 
-                  fish_add_path --prepend --global ~/.asdf/shims /opt/homebrew/bin ~/.local/bin ~/.cargo/bin
+                  fish_add_path --prepend --global ~/.asdf/shims /opt/homebrew/bin /opt/homebrew/sbin ~/.local/bin ~/.cargo/bin
+                  source (brew --prefix asdf)/libexec/asdf.fish
+
                   # Enable AWS CLI autocompletion: github.com/aws/aws-cli/issues/1079
-                  test -x (which aws_completer); and complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
+                  complete --command aws --no-files --arguments '(begin; set --local --export COMP_SHELL fish; set --local --export COMP_LINE (commandline); aws_completer | sed \'s/ $//\'; end)'
                 '';
                 shellAliases = {
                   rm = "rm -i";
                   cp = "cp -i";
                   mv = "mv -i";
                   mkdir = "mkdir -p";
+                  ls = "exa";
                 };
                 shellAbbrs = {
                   o = "open";
@@ -209,19 +203,6 @@
                     end
                     $EDITOR flake.nix
                     direnv allow
-                    '';
-                  };
-                  neo = {
-                    description = "Open Neovide with given file/dir";
-                    body = ''set -xg LUNARVIM_CONFIG_DIR $HOME/.config/lvim
-                    set -xg LUNARVIM_RUNTIME_DIR $HOME/.local/share/lunarvim
-                    set -xg LUNARVIM_CACHE_DIR $HOME/.cache/lvim
-
-                    set ARG $argv[1]
-                    set CUR (pwd)
-                    set FILE "$CUR/$ARG"
-
-                    neovide -- -u "$LUNARVIM_RUNTIME_DIR/lvim/init.lua" $FILE
                     '';
                   };
                   mkdcd = {
@@ -259,8 +240,8 @@
                 ignores = [ ".DS_Store" "*.swp" ];
                 includes = [
                   {
-                    path = "~/git.inc";
-                    condition = "gitdir:~/SAPDevelop/";
+                    path = "/Users/C5343288/SAPDevelop/.gitconfig-work";
+                    condition = "gitdir:/Users/C5343288/SAPDevelop/";
                   }
                 ];
                 extraConfig = {
@@ -271,7 +252,7 @@
                     ui = true;
                   };
                   push = {
-                    default = "simple";
+                    default = "current";
                   };
                   pull = {
                     ff = "only";
@@ -335,6 +316,9 @@
                 enable = true;
                 enableFishIntegration = true;
                 enableZshIntegration = true;
+                settings = {
+                  command_timeout = 2000;
+                };
               };
 
               programs.zoxide = {
