@@ -165,6 +165,7 @@
                   set fish_color_autosuggestion brblack
                   set -e GNUPGHOME
                   set -xg EDITOR /Users/C5343288/.local/bin/lvim
+                  set -xg GPG_TTY (tty)
 
                   fish_add_path --prepend --global ~/.asdf/shims /opt/homebrew/bin /opt/homebrew/sbin ~/.local/bin ~/.cargo/bin
                   source (brew --prefix asdf)/libexec/asdf.fish
