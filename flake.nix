@@ -20,7 +20,7 @@
     ...
   }: let
     darwinFlakeOutput = mk-darwin-system.mkDarwinSystem.m1 {
-      flakePath = "/a/git/jamievandyke";
+      flakePath = "/a/git/fearoffish/nixpkgs";
       modules = [
         ({
           pkgs,
