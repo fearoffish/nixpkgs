@@ -20,7 +20,7 @@
     ...
   }: let
     darwinFlakeOutput = mk-darwin-system.mkDarwinSystem.m1 {
-      flakePath = "/a/git/jix";
+      flakePath = "/a/git/jamievandyke";
       modules = [
         ({
           pkgs,
@@ -28,17 +28,17 @@
           ...
         }: {
           config._module.args = {
-            jix =
+            jamievandyke =
               self
               // {
-                lib = import ./jix/lib {
-                  jix = self;
+                lib = import ./jamievandyke/lib {
+                  jamievandyke = self;
                   inherit pkgs lib;
                 };
               };
           };
         })
-        ./jix/modules
+        ./jamievandyke/modules
       ];
     };
   in
