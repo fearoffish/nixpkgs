@@ -4,7 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-21.11-darwin";
     # nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     mk-darwin-system.url = "github:fearoffish/mk-darwin-system/main";
     # mk-darwin-system.url = "path:/Users/jamievandyke/a/git/fearoffish/mk-darwin-system";
@@ -53,10 +53,10 @@
 
           ({ config, pkgs, lib, ... }: {
             # imports = [ ./git ./direnv ./ssh ./fish ./emacs ];
-            users.users."C5343288".home = "/Users/C5343288";
+            users.users."jamievandyke".home = "/Users/jamievandyke";
 
-            home-manager.users."C5343288" = {
-              # home.username = "C5343288";
+            home-manager.users."jamievandyke" = {
+              # home.username = "jamievandyke";
               # home.sessionPath = [];
               # home.sessionVariables = [];
 
@@ -164,7 +164,7 @@
                   # http://fishshell.com/docs/current/index.html#variables-color
                   set fish_color_autosuggestion brblack
                   set -e GNUPGHOME
-                  set -xg EDITOR /Users/C5343288/.local/bin/lvim
+                  set -xg EDITOR /Users/jamievandyke/.local/bin/lvim
                   set -xg GPG_TTY (tty)
 
                   fish_add_path --prepend --global ~/.asdf/shims /opt/homebrew/bin /opt/homebrew/sbin ~/.local/bin ~/.cargo/bin
@@ -241,8 +241,8 @@
                 ignores = [ ".DS_Store" "*.swp" ".overcommit.yml" ];
                 includes = [
                   {
-                    path = "/Users/C5343288/SAPDevelop/.gitconfig-work";
-                    condition = "gitdir:/Users/C5343288/SAPDevelop/";
+                    path = "/Users/jamievandyke/SAPDevelop/.gitconfig-work";
+                    condition = "gitdir:/Users/jamievandyke/SAPDevelop/";
                   }
                 ];
                 extraConfig = {
