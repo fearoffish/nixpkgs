@@ -6,33 +6,12 @@
         "url_template": "https://github.com/KELiON/cerebro/releases/download/v<version>/cerebro-<version>.dmg",
         "version": "0.3.1"
     },
-    "EmacsApp": {
-        "sha256": "0npwvva9fdh8bp2j96fvpwl2i5h4k2lsvl5kq2dk54qphzx3skpl",
-        "type": "file",
-        "url": "https://emacsformacosx.com/download/emacs-builds/Emacs-pretest-28.0.91-universal.dmg",
-        "url_template": "https://emacsformacosx.com/download/emacs-builds/Emacs-<version>-universal.dmg",
-        "version": "pretest-28.0.91"
-    },
     "FirefoxDevApp": {
         "sha256": "13flj06yaxgjshclxd831i47fj2mgmgpmrgq43q0j9azg28qiyyi",
         "type": "file",
         "url": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/97.0b9/mac/en-US/Firefox%2097.0b9.dmg",
         "url_template": "https://download-installer.cdn.mozilla.net/pub/devedition/releases/<version>/mac/en-US/Firefox%20<version>.dmg",
         "version": "97.0b9"
-    },
-    "HamerspoonApp": {
-        "sha256": "08whidgv8b3az1icm2dp92d5ci301jdjqkynpalfg858nhmq8agi",
-        "type": "file",
-        "url": "https://github.com/Hammerspoon/hammerspoon/releases/download/0.9.90/Hammerspoon-0.9.90.zip",
-        "url_template": "https://github.com/Hammerspoon/hammerspoon/releases/download/<version>/Hammerspoon-<version>.zip",
-        "version": "0.9.90"
-    },
-    "IdeaApp": {
-        "sha256": "1i32i2gd35mgi8rrfbsfx93wz45z0drqmrii2fkliabkwdqdy6zn",
-        "type": "file",
-        "url": "https://download.jetbrains.com/idea/ideaIC-2022.1-aarch64.dmg",
-        "url_template": "https://download.jetbrains.com/idea/ideaIC-<version>-aarch64.dmg",
-        "version": "2022.1"
     },
     "Iterm2App": {
         "sha256": "0y0vhxwn1cl0y1gjm5fad5zndb4v448mqcksbmmskpgg73h4wn9j",
@@ -55,34 +34,6 @@
         "url_template": "https://github.com/keytty/shelter/releases/download/1.2.8/Keytty.<version>.dmg",
         "version": "1.2.8"
     },
-    "Postgres12App": {
-        "sha256": "1cqncz43fwkq3il0k0p1srngr0yq2m5rkvaibc047273a695ad8b",
-        "type": "file",
-        "url": "https://github.com/PostgresApp/PostgresApp/releases/download/v2.5.2/Postgres-2.5.2-14.dmg",
-        "url_template": "https://github.com/PostgresApp/PostgresApp/releases/download/v<version>/Postgres-<version>-14.dmg",
-        "version": "2.5.2"
-    },
-    "PosticoApp": {
-        "sha256": "1s8g1xf9z9xjp4a3zwc1p4cpg7h8mfpd5xgkfk5pq232831lgpnf",
-        "type": "file",
-        "url": "https://s3-eu-west-1.amazonaws.com/eggerapps-downloads/postico-1.5.20.zip",
-        "url_template": "https://s3-eu-west-1.amazonaws.com/eggerapps-downloads/postico-<version>.zip",
-        "version": "1.5.20"
-    },
-    "TelegramApp": {
-        "sha256": "13v3ybzb5gx0xw5r6y1cgznizm8m4a9kx42bbz30x0bnlpgqh5cj",
-        "type": "file",
-        "url": "https://updates.tdesktop.com/tmac/tsetup.3.4.2.dmg",
-        "url_template": "https://updates.tdesktop.com/tmac/tsetup.<version>.dmg",
-        "version": "3.4.2"
-    },
-    "TorApp": {
-        "sha256": "19vhs0y0xdwgi48lqhlsdsgcqvr5wdqmim2bd9r63lqwnl26x4wm",
-        "type": "file",
-        "url": "https://dist.torproject.org/torbrowser/11.0.3/TorBrowser-11.0.3-osx64_en-US.dmg",
-        "url_template": "https://dist.torproject.org/torbrowser/<version>/TorBrowser-<version>-osx64_en-US.dmg",
-        "version": "11.0.3"
-    },
     "TunnelblickApp": {
         "sha256": "14xxyg42sdn463ggm7za9iac30lbajwp1x1xs83ismjqk9hmhn5v",
         "type": "file",
@@ -96,30 +47,6 @@
         "url": "https://github.com/dwarvesf/VimMotionApp/releases/download/v1.2.3/VimMotion.1.2.3.dmg",
         "url_template": "https://github.com/dwarvesf/VimMotionApp/releases/download/v<version>/VimMotion.<version>.dmg",
         "version": "1.2.3"
-    },
-    "emacs-chemacs2": {
-        "branch": "main",
-        "description": "Emacs version switcher, improved",
-        "homepage": null,
-        "owner": "plexus",
-        "repo": "chemacs2",
-        "rev": "d53aa5e5e298a4244b70ae59e9d9ba34752c4bbb",
-        "sha256": "00rs0n6vrylkv47wqpn21kr45y5xmn5qy4lnkzkspp0yw16pw7m9",
-        "type": "tarball",
-        "url": "https://github.com/plexus/chemacs2/archive/d53aa5e5e298a4244b70ae59e9d9ba34752c4bbb.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "emacs-doom": {
-        "branch": "develop",
-        "description": "An Emacs framework for the stubborn martian hacker",
-        "homepage": "",
-        "owner": "hlissner",
-        "repo": "doom-emacs",
-        "rev": "35865ef5e89442e3809b8095199977053dd4210f",
-        "sha256": "185r6902i502bmanv8a3h2pd25gwkaigfgsdslr9w0dyd8z3ypsa",
-        "type": "tarball",
-        "url": "https://github.com/hlissner/doom-emacs/archive/35865ef5e89442e3809b8095199977053dd4210f.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "fish-done": {
         "branch": "master",
