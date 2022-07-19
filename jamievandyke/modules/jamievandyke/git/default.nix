@@ -38,6 +38,10 @@
         difftool.prompt = false;
         difftool.difftastic.cmd = "${pkgs.difftastic}/bin/difft $LOCAL $REMOTE";
 
+        merge.tool = "Kaleidoscope";
+        mergetool.Kaleidoscope.cmd = "/usr/local/bin/ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot";
+        mergetool.trustExitCode = true;
+
         github.user = "fearoffish";
         gitlab.user = "fearoffish";
       };
