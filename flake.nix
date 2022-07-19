@@ -9,6 +9,9 @@
     # change main to a tag o git revision
     mk-darwin-system.url = "github:vic/mk-darwin-system/main";
     mk-darwin-system.inputs.nixpkgs.follows = "nixpkgs";
+
+    alejandra.url = "github:kamadorueda/alejandra";
+    alejandra.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = {
     self,
@@ -17,7 +20,7 @@
     ...
   }: let
     darwinFlakeOutput = mk-darwin-system.mkDarwinSystem.m1 {
-      flakePath = "/Users/jamievandyke/a/git/fearoffish/nixpkgs";
+      flakePath = "/a/git/fearoffish/nixpkgs";
       modules = [
         ({
           pkgs,

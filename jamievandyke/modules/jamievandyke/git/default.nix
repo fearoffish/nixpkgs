@@ -12,8 +12,8 @@
       userEmail = "me@fearof.fish";
       userName = "Jamie van Dyke";
       signing = {
-        key = "6CBDC8C754ECEA0FDB57CE4EC89DD29350A9E797";
-        signByDefault = true;
+        key = "C89DD29350A9E797";
+        signByDefault = false;
       };
       delta = {
         enable = true;
