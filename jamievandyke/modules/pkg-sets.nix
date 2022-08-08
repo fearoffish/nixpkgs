@@ -72,7 +72,9 @@
           # kustomize
           lazygit # nice tui for git
           # libnotify # for those sweet sweet notifications
+          libxml2
           # lua5 # My second-favorite language from Brazil
+          lzma
           # m-cli # handy macos cli for managing macos stuff
           # mdcat # Markdown converter/reader for the CLI
           # ncdu # a great large file and folder finder with a tui to help cleanup stuffs
