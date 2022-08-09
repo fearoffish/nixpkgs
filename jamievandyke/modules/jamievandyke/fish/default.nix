@@ -28,27 +28,6 @@
         nr = "nix run";
         nf = "fd --glob '*.nix' -X nixfmt {}";
         gr = "git recents";
-        gc = "git commit";
-        gb = "git branch";
-        gd = "git dff";
-        gs = "git status";
-        gco = "git checkout";
-        gcb = "git checkout -b";
-        gp = "git pull --rebase --no-commit";
-        gz = "git stash";
-        gza = "git stash apply";
-        gfp = "git push --force-with-lease";
-        gfap = "git fetch --all -p";
-        groh = "git rebase remotes/origin/HEAD";
-        grih = "git rebase -i remotes/origin/HEAD";
-        grom = "git rebase remotes/origin/master";
-        grim = "git rebase -i remotes/origin/master";
-        gpfh = "git push --force-with-lease origin HEAD";
-        gfix = "git commit --all --fixup amend:HEAD";
-        gcm = "git commit --all --message";
-        ga = "git commit --amend --reuse-message HEAD --all";
-        gcam = "git commit --amend --all --message";
-        gbDm = "git rm-merged";
       };
       interactiveShellInit = ''
         set -g fish_key_bindings fish_hybrid_key_bindings
@@ -92,6 +71,25 @@
         # repology-nixpkgs.description = "Open a browser on search for nixpkgs on repology.org";
         # repology-nixpkgs.body = ''
         #   open "https://repology.org/projects/?inrepo=nix_unstable&search=$argv"'';
+        fish_greeting = {
+          description = "Greeting to show when starting a fish shell";
+          body = "";
+        };
+        flakify = {
+          description = "Add a flake.nix for devshell";
+          body = ''if [ ! -e flake.nix ]
+            nix flake new -t github:nix-community/nix-direnv .
+          else if [ ! -e .envrc ]
+            echo "use flake" > .envrc
+          end
+          $EDITOR flake.nix
+          direnv allow
+          '';
+        };
+        mcd = {
+          description = "Make a directory tree and enter it";
+          body = "mkdir -p $argv[1]; and cd $argv[1]";
+        };
       };
       plugins =
         map jamievandyke.lib.nivFishPlugin ["pure" "done" "fzf.fish" "pisces"];
