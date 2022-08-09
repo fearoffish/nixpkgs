@@ -8,8 +8,8 @@
   inherit (jamievandyke.inputs) mk-darwin-system nixpkgs;
   inherit (mk-darwin-system.inputs) home-manager nix-darwin;
   DOTS = lib.mds.mkOutOfStoreSymlink "/a/dots";
-  USER = "jamievandyke";
-  HOME = "/Users/jamievandyke";
+  USER = "C5343288";
+  HOME = "/Users/C5343288";
 in {
   _module.args = {inherit HOME USER DOTS;};
   imports = [./git ./direnv ./ssh ./fish ./gpg];

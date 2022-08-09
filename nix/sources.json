@@ -66,10 +66,10 @@
         "homepage": "",
         "owner": "PatrickF1",
         "repo": "fzf.fish",
-        "rev": "fdc1f4043b1ff4da76bb7c0a6a4f19084e9213ef",
-        "sha256": "1m5gqnjmm0gm906mrhl54pwmjpqfbjims7zvjk4hyhyx45hi94m8",
+        "rev": "5b9ab58bfeeeb2f6165ce61d680366d807aee5bc",
+        "sha256": "0myv7amf13s58w70f3cps7g1l4nfq3nanw7bl859qcgd9wk8i4yc",
         "type": "tarball",
-        "url": "https://github.com/PatrickF1/fzf.fish/archive/fdc1f4043b1ff4da76bb7c0a6a4f19084e9213ef.tar.gz",
+        "url": "https://github.com/PatrickF1/fzf.fish/archive/5b9ab58bfeeeb2f6165ce61d680366d807aee5bc.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "fish-hydro": {
@@ -78,10 +78,10 @@
         "homepage": "",
         "owner": "jorgebucaran",
         "repo": "hydro",
-        "rev": "d4875065ceea226f58ead97dd9b2417937344d6e",
-        "sha256": "1hcnyjvdz0402x69avdmzhbfnnwlb05i3kv4m2mrrfcfmag86xwx",
+        "rev": "d4c107a2c99d1066950a09f605bffea61fc0efab",
+        "sha256": "1ajh6klw1rkn2mqk4rdghflxlk6ykc3wxgwp2pzfnjd58ba161ki",
         "type": "tarball",
-        "url": "https://github.com/jorgebucaran/hydro/archive/d4875065ceea226f58ead97dd9b2417937344d6e.tar.gz",
+        "url": "https://github.com/jorgebucaran/hydro/archive/d4c107a2c99d1066950a09f605bffea61fc0efab.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "fish-pisces": {
@@ -102,10 +102,10 @@
         "homepage": "",
         "owner": "pure-fish",
         "repo": "pure",
-        "rev": "c0df5cb4726aa6831c0473556066a4cbf48fc79e",
-        "sha256": "1ki7b6b7nrb8fzhcslkvg6a9i5fi2da6bv9fm693yvhfhccf863b",
+        "rev": "2d07e74567e9190c82ae66c37c34ca86850cd9ac",
+        "sha256": "0npf5x96b6q2llz4r19wqpx04847llvpmjck3n8gvlzrck0358hp",
         "type": "tarball",
-        "url": "https://github.com/pure-fish/pure/archive/c0df5cb4726aa6831c0473556066a4cbf48fc79e.tar.gz",
+        "url": "https://github.com/pure-fish/pure/archive/2d07e74567e9190c82ae66c37c34ca86850cd9ac.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "fish-z": {

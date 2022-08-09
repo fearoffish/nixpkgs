@@ -20,7 +20,7 @@
     ...
   }: let
     darwinFlakeOutput = mk-darwin-system.mkDarwinSystem.m1 {
-      flakePath = "/a/git/fearoffish/nixpkgs";
+      # flakePath = "/a/git/fearoffish/nixpkgs";
       modules = [
         ({
           pkgs,
@@ -44,7 +44,7 @@
   in
     darwinFlakeOutput
     // {
-      darwinConfigurations."jamie-mbp" =
-        darwinFlakeOutput.darwinConfiguration.aarch64-darwin;
+      darwinConfigurations."jamie-mbp" = darwinFlakeOutput.darwinConfiguration.aarch64-darwin;
+      darwinConfigurations."K9XQJHW7QC" = darwinFlakeOutput.darwinConfiguration.aarch64-darwin;
     };
 }
