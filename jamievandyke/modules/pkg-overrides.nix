@@ -31,7 +31,7 @@
           '';
         });
       alejandra = jamievandyke.inputs.alejandra.defaultPackage.${config.nixpkgs.system};
-      
+
       # kdash = pkgs.stdenvNoCC.mkDerivation (let
       #   src = jamievandyke.lib.nivSources.kdash;
       # in {

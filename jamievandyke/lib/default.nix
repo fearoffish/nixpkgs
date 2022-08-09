@@ -56,7 +56,7 @@
     inherit name;
     src = nivSources."fish-${name}";
   };
-  jamievandykeLink = path: lib.mds.mkOutOfStoreSymlink "/Users/jamievandyke/a/git/fearoffish/nixpkgs/${path}";
+  jamievandykeLink = path: lib.mds.mkOutOfStoreSymlink "/a/nixpkgs/${path}";
   nivApp = name:
     lib.mds.installNivDmg {
       inherit name;

@@ -96,6 +96,46 @@
       plugins =
         map jamievandyke.lib.nivFishPlugin ["pure" "done" "fzf.fish" "pisces"];
     };
+    programs.bat = {
+      enable = true;
+      config = {
+        theme = "GitHub";
+        italic-text = "always";
+      };
+    };
+
+    programs.direnv = {
+      enable = true;
+      # enableFishIntegration = true; # This is automatic so unnecessary
+      enableZshIntegration = true;
+    };
+
+    programs.starship = {
+      enable = true;
+      enableFishIntegration = true;
+      enableZshIntegration = true;
+      settings = {
+        command_timeout = 2000;
+        format = "$username$hostname$shlvl$vcsh$directory$git_branch$git_commit$git_state$git_metrics$git_status$nix_shell$custom$cmd_duration$line_break$jobs$time$status$shell$character";
+      };
+    };
+
+    programs.zoxide = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
+    xdg = {
+      enable = true;
+
+      # configFile."gnupg/gpg-agent.conf".text = ''
+      #   enable-ssh-support
+      #   default-cache-ttl 86400
+      #   max-cache-ttl 86400
+      #   pinentry-program ${pkgs.pinentry_mac}/Applications/pinentry-mac.app/Contents/MacOS/pinentry-mac
+      # '';
+    };
+
     home.file = {
       # ".local/share/fish/fish_history".source = "${DOTS}/fish/fish_history";
     };
