@@ -36,6 +36,7 @@
           # bundix # for bundling gems into nix
           # cargo # rust language
           # cheat # a cheat sheet lookup tool
+          coreutils # lots of little utility apps like numfmt
           # credhub-cli
           curl # An old classic
           difftastic
