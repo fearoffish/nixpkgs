@@ -42,8 +42,8 @@
         # jvd-activate.body = "nix run /a/git/fearoffish/nixpkgs";
         # jvd-shell.description = "Run nix shell with jvd's nixpkgs";
         # jvd-shell.body = "nix shell --inputs-from $HOME/.nix-out/nixpkgs";
-        # jvd-nixpkg-search.description = "Nix search on jvd's nixpkgs input";
-        # jvd-nixpkg-search.body = "nix search --inputs-from $HOME/.nix-out/jvd nixpkgs $argv";
+        # jsearch.description = "Nix search on jvd's nixpkgs input";
+        # jsearch.body = "nix search --inputs-from $HOME/.nix-out/jvd nixpkgs $argv";
         # rg-jvd-inputs.description = "Search on jvd flake inputs";
         # rg-jvd-inputs.body = let
         #   maybeFlakePaths = f:
@@ -60,8 +60,8 @@
         # rg-jvd.body = "rg $argv $HOME/.nix-out/jvd";
         # rg-nixpkgs.description = "Search on current nixpkgs";
         # rg-nixpkgs.body = "rg $argv $HOME/.nix-out/nixpkgs";
-        nsearch.description = "Search on current home-manager";
-        nsearch.body = "rg $argv $HOME/.nix-out/home-manager";
+        # nsearch.description = "Search on current home-manager";
+        # nsearch.body = "rg $argv $HOME/.nix-out/home-manager";
         # rg-nix-darwin.description = "Search on current nix-darwin";
         # rg-nix-darwin.body = "rg $argv $HOME/.nix-out/nix-darwin";
         # nixos-opt.description = "Open a browser on search.nixos.org for options";

@@ -43,6 +43,7 @@
           direnv # Per-directory environment variables
           # dstp # run common networking tests against your site
           exa # ls replacement written in Rust
+          exercism-cli # exercises to learn and teach programming
           # expect # automatic shell responses
           fd # find replacement written in Rust
           # FirefoxDevApp
@@ -91,9 +92,11 @@
           rnix-lsp # nix language server
           rustc # rust language
           rustfmt # rust language
+          s3cmd # s3 cli
           # safe # a vault cli
           sd # Fancy sed replacement
           skim # High-powered fuzzy finder written in Rust
+          shellcheck # bash linter
           starship # configurable, portable prompt
           tealdeer # tldr for various shell tools
           # tig
