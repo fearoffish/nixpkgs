@@ -36,6 +36,8 @@
         fish_add_path ~/.local/bin
 
         direnv hook fish | source
+        source ${pkgs.asdf-vm}/share/asdf-vm/asdf.fish
+        source ${pkgs.asdf-vm}/share/asdf-vm/completions/asdf.fish
       '';
       functions = {
         # jvd-activate.description = "Activate a new jvd system generation";
@@ -60,8 +62,8 @@
         # rg-jvd.body = "rg $argv $HOME/.nix-out/jvd";
         # rg-nixpkgs.description = "Search on current nixpkgs";
         # rg-nixpkgs.body = "rg $argv $HOME/.nix-out/nixpkgs";
-        # nsearch.description = "Search on current home-manager";
-        # nsearch.body = "rg $argv $HOME/.nix-out/home-manager";
+        hsearch.description = "Search on current home-manager";
+        hsearch.body = "rg $argv $HOME/.nix-out/home-manager";
         # rg-nix-darwin.description = "Search on current nix-darwin";
         # rg-nix-darwin.body = "rg $argv $HOME/.nix-out/nix-darwin";
         # nixos-opt.description = "Open a browser on search.nixos.org for options";
@@ -117,6 +119,18 @@
       settings = {
         command_timeout = 2000;
         format = "$username$hostname$shlvl$vcsh$directory$git_branch$git_commit$git_state$git_metrics$git_status$nix_shell$custom$cmd_duration$line_break$jobs$time$status$shell$character";
+        git_status = {
+          conflicted = "!![CONFLICTS $count]";
+          ahead      = "⇡$count";
+          behind     = "⇣$count";
+          diverged   = "⇕⇡$ahead_count⇣$behind_count";
+          untracked  = "?$count";
+          stashed    = "";
+          modified   = "%$count";
+          staged     = "+$count";
+          renamed    = "»$count";
+          deleted    = "✘$count";
+        };
       };
     };
 
