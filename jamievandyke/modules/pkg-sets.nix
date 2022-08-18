@@ -1,13 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   options = with lib; {
     pkgSets = mkOption {
       type = types.attrsOf (types.listOf types.package);
-      default = {};
+      default = { };
       description = "Package sets";
     };
   };
@@ -106,6 +105,7 @@
           # xh
           # xsv
           yq # yaml processor like jq
+          zellij # a new tmux idea
           zoxide
         ]
         ++ podmans;
@@ -115,16 +115,17 @@
 
         ]
         ++ jamievandyke;
-      nix = [niv nixfmt alejandra];
-    in {inherit jamievandyke C5343288 nix;};
+      nix = [ niv nixfmt alejandra ];
+    in
+    { inherit jamievandyke C5343288 nix; };
     nixpkgs.overlays = [
       (new: old: {
         pkgShells =
-          lib.mapAttrs (name: packages: new.mkShell {inherit name packages;})
-          config.pkgSets;
+          lib.mapAttrs (name: packages: new.mkShell { inherit name packages; })
+            config.pkgSets;
         pkgSets =
-          lib.mapAttrs (name: paths: new.buildEnv {inherit name paths;})
-          config.pkgSets;
+          lib.mapAttrs (name: paths: new.buildEnv { inherit name paths; })
+            config.pkgSets;
       })
     ];
   };

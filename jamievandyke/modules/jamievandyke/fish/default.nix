@@ -1,11 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  jamievandyke,
-  USER,
-  DOTS,
-  ...
+{ config
+, lib
+, pkgs
+, jamievandyke
+, USER
+, DOTS
+, ...
 }: {
   home-manager.users.${USER} = {
     programs.fzf.enable = true;
@@ -18,6 +17,7 @@
         tree = "exa -T";
         # "." = "exa -g";
         ".." = "cd ..";
+        "..." = "cd ../..";
       };
       shellAbbrs = {
         ls = "exa";
@@ -27,7 +27,9 @@
         find = "fd";
         nr = "nix run";
         nf = "fd --glob '*.nix' -X nixfmt {}";
-        gr = "git recents";
+        gup = "git pull && git submodule update --init --recursive";
+        ghv = "gh repo view -w";
+        ib = "iacbox -iv=iacbox.common.cdn.repositories.cloud.sap/iacbox-dev-arm:latest";
       };
       interactiveShellInit = ''
         set -g fish_key_bindings fish_hybrid_key_bindings
@@ -96,7 +98,7 @@
         };
       };
       plugins =
-        map jamievandyke.lib.nivFishPlugin ["pure" "done" "fzf.fish" "pisces"];
+        map jamievandyke.lib.nivFishPlugin [ "pure" "done" "fzf.fish" "pisces" ];
     };
     programs.bat = {
       enable = true;
@@ -121,15 +123,15 @@
         format = "$username$hostname$shlvl$vcsh$directory$git_branch$git_commit$git_state$git_metrics$git_status$nix_shell$custom$cmd_duration$line_break$jobs$time$status$shell$character";
         git_status = {
           conflicted = "!![CONFLICTS $count]";
-          ahead      = "⇡$count";
-          behind     = "⇣$count";
-          diverged   = "⇕⇡$ahead_count⇣$behind_count";
-          untracked  = "?$count";
-          stashed    = "";
-          modified   = "%$count";
-          staged     = "+$count";
-          renamed    = "»$count";
-          deleted    = "✘$count";
+          ahead = "⇡$count";
+          behind = "⇣$count";
+          diverged = "⇕⇡$ahead_count⇣$behind_count";
+          untracked = "?$count";
+          stashed = "";
+          modified = "%$count";
+          staged = "+$count";
+          renamed = "»$count";
+          deleted = "✘$count";
         };
       };
     };
