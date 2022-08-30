@@ -7,8 +7,6 @@
 }: {
   nixpkgs.overlays = [
     (self: super: {
-      # See https://github.com/NixOS/nixpkgs/pull/129543/files
-      neovim = super.neovim-unwrapped;
       leader = jamievandyke.lib.nivGoAutoMod "leader";
       xbarApp = jamievandyke.lib.nivApp "xbar";
       VimMotionApp = jamievandyke.lib.nivApp "VimMotion";
@@ -31,7 +29,6 @@
           '';
         });
       alejandra = jamievandyke.inputs.alejandra.defaultPackage.${config.nixpkgs.system};
-
       # kdash = pkgs.stdenvNoCC.mkDerivation (let
       #   src = jamievandyke.lib.nivSources.kdash;
       # in {
@@ -44,6 +41,6 @@
       #     cp $src $out/bin/kdash
       #   '';
       # });
-    })
+    }) 
   ];
 }

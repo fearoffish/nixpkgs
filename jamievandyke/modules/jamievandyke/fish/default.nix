@@ -28,6 +28,7 @@
         nr = "nix run";
         nf = "fd --glob '*.nix' -X nixfmt {}";
         gup = "git pull && git submodule update --init --recursive";
+        gsw = "git switch -f --recurse-submodules";
         ghv = "gh repo view -w";
         ib = "iacbox -iv=iacbox.common.cdn.repositories.cloud.sap/iacbox-dev-arm:latest";
       };

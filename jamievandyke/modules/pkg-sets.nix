@@ -37,6 +37,7 @@
           coreutils # lots of little utility apps like numfmt
           # credhub-cli
           curl # An old classic
+          deadnix # scan for unused nix code
           difftastic
           direnv # Per-directory environment variables
           # dstp # run common networking tests against your site
@@ -74,6 +75,7 @@
           libnotify # for those sweet sweet notifications
           libxml2
           # lua5 # My second-favorite language from Brazil
+          sumneko-lua-language-server # for syntax in neovim
           lzma
           # m-cli # handy macos cli for managing macos stuff
           ncdu # a great large file and folder finder with a tui to help cleanup stuffs
