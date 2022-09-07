@@ -36,6 +36,8 @@
         set -g fish_key_bindings fish_hybrid_key_bindings
         set -xg RUBY_CFLAGS "-w"
         set -xg OPENSSL_CFLAGS "-Wno-error=implicit-function-declaration"
+        set -xg EDITOR "lvim"
+
         fish_add_path ~/.local/bin
 
         direnv hook fish | source

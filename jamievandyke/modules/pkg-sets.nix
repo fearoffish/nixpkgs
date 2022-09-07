@@ -41,6 +41,7 @@
           difftastic
           direnv # Per-directory environment variables
           # dstp # run common networking tests against your site
+          espanso # text completion replacement
           exa # ls replacement written in Rust
           exercism # exercises to learn and teach programming
           # expect # automatic shell responses
