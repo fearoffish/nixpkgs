@@ -15,6 +15,7 @@
         l = "exa -l";
         ll = "exa -l -@ --git";
         tree = "exa -T";
+        be = "bundle exec";
         # "." = "exa -g";
         ".." = "cd ..";
         "..." = "cd ../..";
@@ -31,18 +32,20 @@
         gsw = "git switch -f --recurse-submodules";
         ghv = "gh repo view -w";
         ib = "iacbox -iv=iacbox.common.cdn.repositories.cloud.sap/iacbox-dev-arm:latest";
+        e = "emacs . &";
+        s = "subl";
       };
       interactiveShellInit = ''
         set -g fish_key_bindings fish_hybrid_key_bindings
         set -xg RUBY_CFLAGS "-w"
         set -xg OPENSSL_CFLAGS "-Wno-error=implicit-function-declaration"
-        set -xg EDITOR "lvim"
+        set -xg EDITOR "subl -w"
 
-        fish_add_path ~/.local/bin
-
+        eval "$(/opt/homebrew/bin/brew shellenv)"
         direnv hook fish | source
         source ${pkgs.asdf-vm}/share/asdf-vm/asdf.fish
         source ${pkgs.asdf-vm}/share/asdf-vm/completions/asdf.fish
+        fish_add_path ~/.local/bin ~/.emacs.d/bin
       '';
       functions = {
         # jvd-activate.description = "Activate a new jvd system generation";
