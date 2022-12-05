@@ -13,7 +13,7 @@
       userName = "Jamie van Dyke";
       signing = {
         key = "C89DD29350A9E797";
-        signByDefault = false;
+        signByDefault = true;
       };
       delta = {
         enable = true;
