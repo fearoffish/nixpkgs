@@ -15,8 +15,8 @@
       # System level packages
       podmans = [
         # for podman docker
-        podman
-        qemu
+        # podman
+        # qemu
         xz
         gvproxy
       ];
@@ -34,13 +34,14 @@
           # buildpack # Cloud Native buildpacks
           # bundix # for bundling gems into nix
           # cargo # rust language
-          coreutils # lots of little utility apps like numfmt
+          # coreutils # lots of little utility apps like numfmt
           # credhub-cli
           curl # An old classic
           deadnix # scan for unused nix code
           difftastic
           direnv # Per-directory environment variables
           # dstp # run common networking tests against your site
+          EmacsApp
           exa # ls replacement written in Rust
           exercism # exercises to learn and teach programming
           # expect # automatic shell responses
@@ -79,11 +80,11 @@
           lzma
           # m-cli # handy macos cli for managing macos stuff
           ncdu # a great large file and folder finder with a tui to help cleanup stuffs
-          neovim # you can move, but there is no escape
+          # neovim # you can move, but there is no escape
           niv # Nix dependency management
           # pass
           pinentry_mac # Necessary for GPG
-          podman # Docker alternative
+          # podman # Docker alternative
           qemu # emulator
           re2c # regex compiler
           ripgrep # grep replacement written in Rust
@@ -96,7 +97,8 @@
           sd # Fancy sed replacement
           skim # High-powered fuzzy finder written in Rust
           shellcheck # bash linter
-          starship # configurable, portable prompt
+          sqlite # sqlite cli
+          # starship # configurable, portable prompt
           tealdeer # tldr for various shell tools
           # tig
           tmux # cli window manager
@@ -104,6 +106,7 @@
           viddy # a modern watch
           VimMotionApp
           wget
+          wordnet
           # xh
           # xsv
           yq # yaml processor like jq
