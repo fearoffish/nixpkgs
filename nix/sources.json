@@ -6,6 +6,13 @@
         "url_template": "https://github.com/KELiON/cerebro/releases/download/v<version>/cerebro-<version>.dmg",
         "version": "0.3.1"
     },
+    "EmacsApp": {
+        "sha256": "6228b41938ad3ef76450c843a510615b07f8058bc9a256d1ff3fbf928a384235",
+        "type": "file",
+        "url": "https://emacsforosx.com/emacs-builds/Emacs-28.2-universal.dmg",
+        "url_template": "https://emacsformacosx.com/emacs-builds/Emacs-<version>-universal.dmg",
+        "version": "28.2"
+    },
     "FirefoxDevApp": {
         "sha256": "13flj06yaxgjshclxd831i47fj2mgmgpmrgq43q0j9azg28qiyyi",
         "type": "file",
