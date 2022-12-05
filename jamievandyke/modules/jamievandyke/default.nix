@@ -8,6 +8,8 @@
   inherit (jamievandyke.inputs) mk-darwin-system nixpkgs;
   inherit (mk-darwin-system.inputs) home-manager nix-darwin;
   DOTS = lib.mds.mkOutOfStoreSymlink "/a/dots";
+  # USER = builtins.getEnv "USER";
+  # HOME = "/Users/${USER}";
   USER = "C5343288";
   HOME = "/Users/C5343288";
 in {
